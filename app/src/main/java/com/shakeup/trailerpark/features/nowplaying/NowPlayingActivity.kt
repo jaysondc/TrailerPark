@@ -1,9 +1,10 @@
-package com.shakeup.trailerpark
+package com.shakeup.trailerpark.features.nowplaying
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.shakeup.trailerpark.R
 
-class TrailerList : AppCompatActivity() {
+class NowPlayingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
