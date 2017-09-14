@@ -1,5 +1,8 @@
 package com.shakeup.trailerpark.commons;
 
+import com.shakeup.trailerpark.commons.adapters.AdapterConstants
+import com.shakeup.trailerpark.commons.adapters.ViewType
+
 /**
  * Created by Jayson on 9/14/2017.
  *
@@ -35,7 +38,15 @@ data class MovieItem(
         val adult: Boolean,
         val overview: String,
         val release_date: String
-)
+): ViewType {
+
+    override fun getViewType(): Int {
+        when (vote_average >= 5) {
+            true -> return AdapterConstants.MOVIE_HIGHLIGHTED
+            false -> return AdapterConstants.MOVIE_NORMAL
+        }
+    }
+}
 
 data class Trailers(
         val id: Int,
