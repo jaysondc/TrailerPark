@@ -57,7 +57,8 @@ class NowPlayingAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         // insert news and the loading at the end of the list
         items.addAll(movies)
         //items.add(loadingItem)
-        notifyItemRangeChanged(0, items.size /* +1 TODO plus loading item */)
+        notifyDataSetChanged()
+        //notifyItemRangeChanged(0, items.size /* +1 TODO plus loading item */)
     }
 
     /**
