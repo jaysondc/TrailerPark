@@ -9,11 +9,32 @@ import com.shakeup.trailerpark.commons.adapters.ViewType
  * Holds the model objects for Movie and Trailer items
  */
 
+class Models {
+    object dummyMovieItem {
+        val dummyMovie = MovieItem(
+                10,
+                1,
+                false,
+                6.0,
+                "Test Movie",
+                100.0f,
+                "test_poster_path",
+                "en",
+                "Test Movie Original",
+                listOf(1, 2),
+                "test_backdrop_path",
+                false,
+                "OVERVIEW",
+                "09-14-2017"
+        )
+    }
+}
+
 /**
  * Object returned by the Now Playing endpoint
  */
 data class NowPlaying(
-        val results: List<MovieItem>,
+        val movies: List<MovieItem>,
         val page: Int,
         val total_results: Int,
         // val dates: DateRange,
@@ -38,7 +59,7 @@ data class MovieItem(
         val adult: Boolean,
         val overview: String,
         val release_date: String
-): ViewType {
+) : ViewType {
 
     override fun getViewType(): Int {
         when (vote_average >= 5) {

@@ -14,7 +14,7 @@ import com.shakeup.trailerpark.commons.adapters.ViewTypeDelegateAdapter
  * Adapter for the movies RecyclerView. Handles delegate adapters and uses the appropriate one
  * based on the ViewType of the item
  */
-class MovieAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NowPlayingAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: ArrayList<ViewType>
     private var delegateAdapters = SparseArrayCompat<ViewTypeDelegateAdapter>()
@@ -26,7 +26,7 @@ class MovieAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         delegateAdapters.put(AdapterConstants.MOVIE_NORMAL, MovieDelegateAdapter())
         delegateAdapters.put(AdapterConstants.MOVIE_HIGHLIGHTED, MovieDelegateAdapter()) //TODO: Add a highlighted movie adapter
         items = ArrayList()
-        items.add(loadingItem)
+        //items.add(loadingItem)
     }
 
     override fun getItemCount(): Int {
@@ -50,14 +50,14 @@ class MovieAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
      */
     fun addMovies(movies: List<MovieItem>) {
         // first remove loading and notify
-        val initPosition = items.size - 1
-        items.removeAt(initPosition)
-        notifyItemRemoved(initPosition)
+//        val initPosition = items.size // -1 TODO when loading item works
+//        items.removeAt(initPosition)
+//        notifyItemRemoved(initPosition)
 
         // insert news and the loading at the end of the list
         items.addAll(movies)
-        items.add(loadingItem)
-        notifyItemRangeChanged(initPosition, items.size + 1 /* plus loading item */)
+        //items.add(loadingItem)
+        notifyItemRangeChanged(0, items.size /* +1 TODO plus loading item */)
     }
 
     /**
