@@ -51,7 +51,7 @@ object MovieManager{
                         dataResponse.total_pages
                 )
 
-                // Return nowPlayin object
+                // Return nowPlaying object
                 subscriber.onNext(nowPlaying)
                 subscriber.onCompleted()
             } else {
