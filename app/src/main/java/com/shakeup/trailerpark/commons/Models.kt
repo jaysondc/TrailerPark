@@ -91,6 +91,9 @@ data class TrailerItem(
     // Youtube image path is https://img.youtube.com/vi/<insert-youtube-video-id-here>/hqdefault.jpg
     private fun generatePreviewPath(quality: String): String =
             String.format("https://img.youtube.com/vi/%s/%s.jpg", source, quality)
+
+    // Youtube video path format is http://www.youtube.com/watch?v=<youtube-video-source>
+    fun generateVideoUrl(): String = String.format("http://www.youtube.com/watch?v=%s", source)
 }
 
 

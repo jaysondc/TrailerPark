@@ -1,6 +1,8 @@
 package com.shakeup.trailerpark.features.nowplaying.adapters
 
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -93,6 +95,12 @@ class MovieDelegateAdapter : ViewTypeDelegateAdapter {
 
                         trailerView.trailer_title.text = trailer?.name ?: "No Name"
                         trailerView.video_preview.loadImg(trailer?.generatePreviewHQ() ?: "")
+
+                        // Launch youtube video in the Youtube app on click
+                        trailerView.setOnClickListener {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(trailer?.generateVideoUrl()))
+                            context.startActivity(intent)
+                        }
                     }
                 }
             }
