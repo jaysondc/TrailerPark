@@ -2,6 +2,7 @@ package com.shakeup.trailerpark.api
 
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -15,4 +16,9 @@ interface MovieDbApi {
     fun getNowPlaying(
             @Query("page") page: Int,
             @Query("api_key") key: String = "981e7bf7ef48337e4de5f5887593736b"): Call<NowPlayingResponse>
+
+    @GET("movie/{movie_id}/trailers")
+    fun getTrailers(
+            @Path("movie_id") movieId: Int,
+            @Query("api_key") key: String = "981e7bf7ef48337e4de5f5887593736b"): Call<TrailersResponse>
 }

@@ -7,6 +7,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 /**
  * Created by Jayson on 9/14/2017.
  *
+ * Initializes the Retrofit instance and provides methods for accessing different endpoints
+ * provided by TheMovieDB API
  */
 
 class MovieDbRestApi {
@@ -25,4 +27,5 @@ class MovieDbRestApi {
     }
 
     fun getNowPlaying(page: Int): Call<NowPlayingResponse> = movieDbApi.getNowPlaying(page)
+    fun getTrailers(movieId: Int): Call<TrailersResponse> = movieDbApi.getTrailers(movieId)
 }

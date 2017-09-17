@@ -13,6 +13,9 @@ class NowPlayingResponse(
         val total_pages: Int
 )
 
+/*
+ * JSON parsing for individual movie responses
+ */
 class MovieResponse(
         val vote_count: Int,
         val id: Int,
@@ -30,22 +33,20 @@ class MovieResponse(
         val release_date: String
 )
 
-// TODO: Apply once we start requesting trailers
-//data class Trailers(
-//        val id: Int,
-//        val results: List<TrailerItem>
-//)
-//
-///**
-// * Object for individual Trailers
-// */
-//data class TrailerItem(
-//        val id: Int,
-//        val iso_639_1: String,
-//        val iso_3166_1: String,
-//        val key: String,
-//        val name: String,
-//        val site: String,
-//        val size: Int,
-//        val type: String
-//)
+/*
+ * JSON parsing for a Trailers response
+ */
+class TrailersResponse(
+        val id: Int,
+        val youtube: List<TrailerItemResponse>
+)
+
+/**
+ * JSON Parsing for individual trailers
+ */
+class TrailerItemResponse(
+        val name: String,
+        val size: String,
+        val source: String,
+        val type: String
+)

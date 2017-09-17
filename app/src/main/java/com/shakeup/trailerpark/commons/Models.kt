@@ -38,7 +38,7 @@ data class MovieItem(
         val adult: Boolean,
         val overview: String,
         val release_date: String
-) : ViewType {
+        ) : ViewType {
 
     override fun getViewType(): Int {
         when (vote_average >= 5) {
@@ -66,22 +66,21 @@ data class MovieItem(
             String.format("https://image.tmdb.org/t/p/%s/%s", size, backdrop_path)
 }
 
+/*
+ * Data class to hold a MovieID and list of trailers
+ */
 data class Trailers(
         val id: Int,
-        val results: List<TrailerItem>
+        val youtube: List<TrailerItem>
 )
 
-/**
- * Object for individual Trailers
+/*
+ * Data class to hold individual trailers
  */
 data class TrailerItem(
-        val id: Int,
-        val iso_639_1: String,
-        val iso_3166_1: String,
-        val key: String,
         val name: String,
-        val site: String,
-        val size: Int,
+        val size: String,
+        val source: String,
         val type: String
 )
 

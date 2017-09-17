@@ -13,8 +13,8 @@ import rx.schedulers.Schedulers
 
 class NowPlayingActivity : RxBaseActivity() {
 
-    private var nowPlaying: NowPlaying? = null
-    private val movieManager by lazy { MovieManager() }
+    private var mNowPlaying: NowPlaying? = null
+    private val mMovieManager by lazy { MovieManager }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,19 +32,19 @@ class NowPlayingActivity : RxBaseActivity() {
         requestNowPlaying()
     }
 
+    /**
+     * Creates a subscription object, specifying the request to run on the IO thread
+     * Observed actions will be handled on the Main thread
+     * Success will assign the movies to the adapter,
+     * Error will show a snackbar error message
+     */
     private fun requestNowPlaying() {
-        /**
-         * Creates a subscription object, specifying the request to run on the IO thread
-         * Observed actions will be handled on the Main thread
-         * Success will assign the movies to the adapter,
-         * Error will show a snackbar error message
-         */
-        val subscription = movieManager.getNowPlaying(nowPlaying?.page ?: 1)
+        val subscription = mMovieManager.getNowPlaying(mNowPlaying?.page ?: 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe (
                         { retrievedMovies ->
-                            nowPlaying = retrievedMovies
+                            mNowPlaying = retrievedMovies
                             (recycler_now_playing.adapter as NowPlayingAdapter).addMovies(retrievedMovies.movies)
                         },
                         { e ->
