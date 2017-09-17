@@ -4,12 +4,14 @@ import android.content.res.Configuration
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import com.shakeup.trailerpark.R
 import com.shakeup.trailerpark.commons.*
 import com.shakeup.trailerpark.commons.adapters.ViewType
 import com.shakeup.trailerpark.commons.adapters.ViewTypeDelegateAdapter
 import com.shakeup.trailerpark.features.nowplaying.MovieManager
+import kotlinx.android.synthetic.main.cardview_trailer.view.*
 import kotlinx.android.synthetic.main.listitem_movies.view.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -36,6 +38,7 @@ class MovieDelegateAdapter : ViewTypeDelegateAdapter {
         private var mTrailerFactory: TrailerViewFactory? = null
 
         fun bind(item: MovieItem, trailerFactory: TrailerViewFactory) = with(itemView) {
+            scrollview_movie_trailers.scrollTo(0,0)
             mTrailerFactory = trailerFactory
 
             if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -49,6 +52,10 @@ class MovieDelegateAdapter : ViewTypeDelegateAdapter {
             requestTrailers(item.id)
         }
 
+        /**
+         * Ensures there are corresponding views for each trailer a movie has. This method
+         * uses the TrailerFactory to recycle trailers and improve performance
+         */
         private fun addTrailerViews() {
             with(itemView.linearlayout_movie_trailers) {
                 val numTrailers = mTrailers?.youtube?.size ?: 0
@@ -59,19 +66,35 @@ class MovieDelegateAdapter : ViewTypeDelegateAdapter {
                 // Remove all trailer views
                 while (childCount > 1) {
                     mTrailerFactory?.recycleView(getChildAt(1))
-                    linearlayout_movie_trailers.removeViewAt(1)
+                    removeViewAt(1)
                 }
 
                 // Add trailer views
                 while (childCount < numTrailers + 1) {
-                    linearlayout_movie_trailers.addView(mTrailerFactory?.getView(parent as ViewGroup))
+                    addView(mTrailerFactory?.getView(parent as ViewGroup))
                 }
 
                 if (childCount != numTrailers + 1) Log.d("LOG_TAG", "Trailer count mismatch");
+            }
 
-//                for (i in 1..childCount) {
-//                    getChildAt(i).trailer_title.text = i.toString()
-//                }
+            bindTrailers()
+        }
+
+        /**
+         * Bind trailer data to trailer views
+         */
+        private fun bindTrailers() {
+            with(itemView.linearlayout_movie_trailers) {
+                val numTrailers = mTrailers?.youtube?.size ?: 0
+                if (numTrailers > 0) {
+                    for (i in 1 until childCount) {
+                        val trailerView: View = getChildAt(i)
+                        val trailer: TrailerItem? = mTrailers?.youtube?.get(i-1)
+
+                        trailerView.trailer_title.text = trailer?.name ?: "No Name"
+                        trailerView.video_preview.loadImg(trailer?.generatePreviewHQ() ?: "")
+                    }
+                }
             }
         }
 

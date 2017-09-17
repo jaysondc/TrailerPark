@@ -82,6 +82,15 @@ data class TrailerItem(
         val size: String,
         val source: String,
         val type: String
-)
+) {
+
+    fun generatePreviewHQ(): String = generatePreviewPath("hqdefault")
+    fun generatePreviewMQ(): String = generatePreviewPath("mqdefault")
+    fun generatePreviewSD(): String = generatePreviewPath("sddefault")
+
+    // Youtube image path is https://img.youtube.com/vi/<insert-youtube-video-id-here>/hqdefault.jpg
+    private fun generatePreviewPath(quality: String): String =
+            String.format("https://img.youtube.com/vi/%s/%s.jpg", source, quality)
+}
 
 
