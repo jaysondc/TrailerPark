@@ -9,27 +9,6 @@ import com.shakeup.trailerpark.commons.adapters.ViewType
  * Holds the model objects for Movie and Trailer items
  */
 
-class Models {
-    object dummyMovieItem {
-        val dummyMovie = MovieItem(
-                10,
-                1,
-                false,
-                6.0,
-                "Test Movie",
-                100.0f,
-                "test_poster_path",
-                "en",
-                "Test Movie Original",
-                listOf(1, 2),
-                "test_backdrop_path",
-                false,
-                "OVERVIEW",
-                "09-14-2017"
-        )
-    }
-}
-
 /**
  * Object returned by the Now Playing endpoint
  */
@@ -67,6 +46,21 @@ data class MovieItem(
             false -> return AdapterConstants.MOVIE_NORMAL
         }
     }
+
+    fun getBackdropPath300() : String = generateImagePath("w300")
+    fun getBackdropPath780() : String = generateImagePath("w780")
+    fun getBackdropPath1280() : String = generateImagePath("w1280")
+    fun getBackdropPathOriginal() : String = generateImagePath("original")
+
+    fun getPosterPath154() : String = generateImagePath("w154")
+    fun getPosterPath185() : String = generateImagePath("w185")
+    fun getPosterPath342() : String = generateImagePath("w342")
+    fun getPosterPath500() : String = generateImagePath("w500")
+    fun getPosterPathOriginal() : String = generateImagePath("original")
+
+    // Image format = https://image.tmdb.org/t/p/[IMAGE_SIZE]/[IMAGE_PATH]
+    private fun generateImagePath(size: String): String =
+            String.format("https://image.tmdb.org/t/p/%s/%s", size, poster_path)
 }
 
 data class Trailers(

@@ -24,7 +24,7 @@ class MovieDelegateAdapter : ViewTypeDelegateAdapter {
     class MovieViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             parent.inflate(R.layout.listitem_movies)) {
         fun bind(item: MovieItem) = with(itemView) {
-            img_thumbnail.loadImg(item.poster_path)
+            img_thumbnail.loadImg(item.getPosterPath185())
             title.text = item.title
             overview.text = item.overview
         }

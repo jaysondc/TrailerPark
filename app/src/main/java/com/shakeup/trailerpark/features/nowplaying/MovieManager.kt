@@ -1,7 +1,6 @@
 package com.shakeup.trailerpark.features.nowplaying
 
 import com.shakeup.trailerpark.api.MovieDbRestApi
-import com.shakeup.trailerpark.commons.Models
 import com.shakeup.trailerpark.commons.MovieItem
 import com.shakeup.trailerpark.commons.NowPlaying
 import rx.Observable
@@ -56,26 +55,5 @@ class MovieManager (private val api: MovieDbRestApi = MovieDbRestApi()) {
                 subscriber.onError(Throwable(response.message()))
             }
         }
-    }
-
-    /**
-     * getNowPlaying that returns dummy data
-     */
-
-    fun getNowPlayingDummy() : NowPlaying {
-        var movieList = listOf(
-                Models.dummyMovieItem.dummyMovie,
-                Models.dummyMovieItem.dummyMovie,
-                Models.dummyMovieItem.dummyMovie,
-                Models.dummyMovieItem.dummyMovie,
-                Models.dummyMovieItem.dummyMovie)
-
-        return NowPlaying(
-                movies = movieList,
-                page = 1,
-                total_results = 100,
-                total_pages = 10
-        )
-
     }
 }
