@@ -1,5 +1,6 @@
 package com.shakeup.trailerpark.features.nowplaying.adapters
 
+import android.content.res.Configuration
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.shakeup.trailerpark.R
@@ -24,7 +25,11 @@ class MovieDelegateAdapter : ViewTypeDelegateAdapter {
     class MovieViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             parent.inflate(R.layout.listitem_movies)) {
         fun bind(item: MovieItem) = with(itemView) {
-            img_thumbnail.loadImg(item.getPosterPath185())
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_thumbnail.loadImg(item.getPosterPath185())
+            } else {
+                img_thumbnail.loadImg(item.getBackdropPath780())
+            }
             title.text = item.title
             overview.text = item.overview
         }

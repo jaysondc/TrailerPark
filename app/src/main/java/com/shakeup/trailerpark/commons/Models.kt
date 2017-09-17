@@ -47,20 +47,23 @@ data class MovieItem(
         }
     }
 
-    fun getBackdropPath300() : String = generateImagePath("w300")
-    fun getBackdropPath780() : String = generateImagePath("w780")
-    fun getBackdropPath1280() : String = generateImagePath("w1280")
-    fun getBackdropPathOriginal() : String = generateImagePath("original")
+    fun getBackdropPath300() : String = generateBackdropPath("w300")
+    fun getBackdropPath780() : String = generateBackdropPath("w780")
+    fun getBackdropPath1280() : String = generateBackdropPath("w1280")
+    fun getBackdropPathOriginal() : String = generateBackdropPath("original")
 
-    fun getPosterPath154() : String = generateImagePath("w154")
-    fun getPosterPath185() : String = generateImagePath("w185")
-    fun getPosterPath342() : String = generateImagePath("w342")
-    fun getPosterPath500() : String = generateImagePath("w500")
-    fun getPosterPathOriginal() : String = generateImagePath("original")
+    fun getPosterPath154() : String = generatePosterPath("w154")
+    fun getPosterPath185() : String = generatePosterPath("w185")
+    fun getPosterPath342() : String = generatePosterPath("w342")
+    fun getPosterPath500() : String = generatePosterPath("w500")
+    fun getPosterPathOriginal() : String = generatePosterPath("original")
 
     // Image format = https://image.tmdb.org/t/p/[IMAGE_SIZE]/[IMAGE_PATH]
-    private fun generateImagePath(size: String): String =
+    private fun generatePosterPath(size: String): String =
             String.format("https://image.tmdb.org/t/p/%s/%s", size, poster_path)
+
+    private fun generateBackdropPath(size: String): String =
+            String.format("https://image.tmdb.org/t/p/%s/%s", size, backdrop_path)
 }
 
 data class Trailers(
