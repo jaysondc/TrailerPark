@@ -1,6 +1,6 @@
 # Project 1 - *Trailer Park*
 
-**Name of your app** shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
+**Trailer Park** shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
 Time spent: **16** hours spent in total
 
@@ -40,9 +40,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/tWao7os.gif' title='Video Walkthrough Portrait' width='300' alt='Video Walkthrough Portrait' />
+<img src='https://thumbs.gfycat.com/UnimportantEnragedAmericanavocet-size_restricted.gif' title='Video Walkthrough Portrait' width='300' alt='Video Walkthrough Portrait' />
 
-<img src='https://i.imgur.com/663t30d.gif' title='Video Walkthrough Landscape' width='600' alt='Video Walkthrough Landscape' />
+<img src='https://thumbs.gfycat.com/PoisedHealthyBlackpanther-size_restricted.gif' title='Video Walkthrough Landscape' width='600' alt='Video Walkthrough Landscape' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
